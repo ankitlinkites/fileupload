@@ -28,6 +28,7 @@ var FileUploadController = {
 		 	} else {
 		 		var starttime = new Date().getTime();
 		 		fs.writeFileSync("./assets"+filePath, data,"binary");
+		 		var endtime = new Date().getTime();
 				// fs.writeFile("./assets"+filePath, data, function (err) {
 				// 	var endtime = new Date().getTime();
 			 //  		if (err) {
