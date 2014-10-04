@@ -36,7 +36,7 @@ var FileUploadController = {
 							if (error) {
 								res.send(500, { message: "DB Error", error : error});
 							} else {
-								res.send({message: "success", image : file, starttime:starttiem, endtime : endtime});
+								res.send({message: "success", image : file, starttime:starttime, endtime : endtime});
 							}
 						});							  			
 		  			}
