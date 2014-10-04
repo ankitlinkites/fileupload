@@ -26,22 +26,19 @@ var FileUploadController = {
 		  	if (err) {
 				res.json({'error': 'could not read file'});
 		 	} else {
+		 		var starttime = new Date().getTime();
 				fs.writeFile("./assets"+filePath, data, function (err) {
+					var endtime = new Date().getTime();
 			  		if (err) {
 						res.json({'error': 'could not write file to storage'});
 			  		} else {
-						if (err) {
-							res.json(err);
-			  			} else {
-							console.log(data);
-			  				File.create({appid: req.body.appid, filename: req.body.imagename, filepath:filePath}).done(function(error, file) {
-								if (error) {
-									res.send(500, { message: "DB Error", error : error});
-								} else {
-									res.send({message: "success", image : file});
-								}
-							});							  			
-			  			}
+		  				File.create({appid: req.body.appid, filename: req.body.imagename, filepath:filePath}, function(error, file) {
+							if (error) {
+								res.send(500, { message: "DB Error", error : error});
+							} else {
+								res.send({message: "success", image : file, starttime:starttiem, endtime : endtime});
+							}
+						});							  			
 		  			}
 				});
 		  	}
