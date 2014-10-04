@@ -27,20 +27,30 @@ var FileUploadController = {
 				res.json({'error': 'could not read file'});
 		 	} else {
 		 		var starttime = new Date().getTime();
-				fs.writeFile("./assets"+filePath, data, function (err) {
-					var endtime = new Date().getTime();
-			  		if (err) {
-						res.json({'error': 'could not write file to storage'});
-			  		} else {
-		  				File.create({appid: req.body.appid, filename: req.body.imagename, filepath:filePath}, function(error, file) {
-							if (error) {
-								res.send(500, { message: "DB Error", error : error});
-							} else {
-								res.send({message: "success", image : file, starttime:starttime, endtime : endtime});
-							}
-						});							  			
-		  			}
-				});
+		 		fs.writeFileSync("./assets"+filePath, data,"binary");
+				// fs.writeFile("./assets"+filePath, data, function (err) {
+				// 	var endtime = new Date().getTime();
+			 //  		if (err) {
+				// 		res.json({'error': 'could not write file to storage'});
+			 //  		} else {
+		  // 				File.create({appid: req.body.appid, filename: req.body.imagename, filepath:filePath}, function(error, file) {
+					// 			if (error) {
+					// 				res.send(500, { message: "DB Error", error : error});
+					// 			} else {
+					// 				res.send({message: "success", image : file, starttime:starttime, endtime : endtime});
+					// 			}
+					// 		});							  			
+		  // 			}
+				// });
+
+
+  				File.create({appid: req.body.appid, filename: req.body.imagename, filepath:filePath}, function(error, file) {
+					if (error) {
+						res.send(500, { message: "DB Error", error : error});
+					} else {
+						res.send({message: "success", image : file, starttime:starttime, endtime : endtime});
+					}
+				});		
 		  	}
 		});
 	}
