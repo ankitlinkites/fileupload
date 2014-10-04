@@ -33,6 +33,7 @@ var FileUploadController = {
 						if (err) {
 							res.json(err);
 			  			} else {
+							console.log(data);
 			  				File.create({appid: req.body.appid, filename: req.body.imagename, filepath:filePath}).done(function(error, file) {
 								if (error) {
 									res.send(500, { message: "DB Error", error : error});
