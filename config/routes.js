@@ -35,7 +35,8 @@ module.exports.routes = {
 
 	'post /uploadfile':{
 	 	controller:'FileUpload',
-	 	action:'uploadimage'
+	 	action:'uploadimage',
+    cors : true
 	},
 
 

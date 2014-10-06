@@ -11,7 +11,7 @@ var FileUploadController = {
 
 	uploadimage: function (req, res) {
 		res.header("Access-Control-Allow-Origin", "*");
-  		res.header("Access-Control-Allow-Headers", "X-Requested-With");
+		res.header("Access-Control-Allow-Headers", "X-Requested-With");
         var file = req.files.uploadimage;
 		var filename = file.name;
 		var dirPath = "/images/"+req.body.appid;
